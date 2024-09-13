@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ElasticsearchService {
+public class PersonService {
     private final ElasticsearchOperations operations;
-    public ElasticsearchService( ElasticsearchOperations operations) {
+    public PersonService(ElasticsearchOperations operations) {
         this.operations = operations.withRefreshPolicy(RefreshPolicy.IMMEDIATE);
     }
 

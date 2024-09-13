@@ -2,7 +2,7 @@ package com.es.demo.es_demo;
 
 import cn.hutool.json.JSONUtil;
 import com.es.demo.es_demo.document.Person;
-import com.es.demo.es_demo.service.ElasticsearchService;
+import com.es.demo.es_demo.service.PersonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 class EsDemoApplicationTests {
 
     @Autowired
-    private ElasticsearchService service;
+    private PersonService service;
     @Autowired
     private ObjectMapper objectMapper;
 
