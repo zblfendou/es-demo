@@ -19,3 +19,11 @@ docker run -d -p 9200:9200 -p 9300:9300 --name=elasticsearch bitnami/elasticsear
 ```
 docker logs -f --tail 200 elasticsearch
 ```
+### 服务版本
++ [elasticsearch 7.17](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/install-elasticsearch.html)
++ Java17
++ springboot 3.0+
+#### 参考链接
+[Search API](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-search.html)
+
+[BulkProcessor](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-docs-bulk-processor.html)
