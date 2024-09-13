@@ -2,7 +2,7 @@
 
 ### 步骤记录
 
-# docker安装elasticsearch 版本:7.17.24
+# docker安装elasticsearch镜像 版本:7.17.24
 
 ```
 docker pull bitnami/elasticsearch:7.17.24
