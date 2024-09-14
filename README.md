@@ -68,4 +68,6 @@ bin/kafka-server-start.sh config/server.properties
 
 #### 3.4 删除 topic
 
-```bin/kafka-topics.sh --delete --topic my-topic --bootstrap-server localhost:9092```
+```bin/kafka-topics.sh --delete --topic my-topic --bootstrap-server localhost:9092``
+
+#### 注意:如果客户端不是调用本机的kafka服务时,在启动服务时需要修改server.properties 的advertised.listeners=PLAINTEXT://ip:9092,否则在启动客户端时会自动连接本机.报错信息:Connection to node 0 (localhost/127.0.0.1:9092) could not be established. Node may not be available.

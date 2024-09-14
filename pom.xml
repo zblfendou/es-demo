@@ -18,7 +18,10 @@
 		<license/>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<name>张彬雷</name>
+			<email>zhangbinlei2023@126.com</email>
+		</developer>
 	</developers>
 	<scm>
 		<connection/>
