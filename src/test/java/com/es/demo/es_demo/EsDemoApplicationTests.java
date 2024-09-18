@@ -37,7 +37,7 @@ class EsDemoApplicationTests {
             person.setAge(i);
             list.add(person);
         }
-//        service.savePerson(list);
+        service.savePerson(list);
     }
 
     @Test
