@@ -23,7 +23,9 @@ public class TestController {
 
     @RequestMapping("get")
     public HttpResult get(@RequestParam("name") String name) {
-        log.info("name:{}", name);
+        log.debug("name:{}", name);
+        int i = 1/0;
+        System.out.println("cccccccccccc");
         return HttpResult.asOk(personService.getPersonByName(name));
     }
 }

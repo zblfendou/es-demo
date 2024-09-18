@@ -1,17 +1,45 @@
 <configuration>
     <property name="APP_NAME" value="springboot-es-kafka"/>
+    <!-- 配置日志格式 -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"/>
+
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>${APP_NAME} - %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
     <appender name="KAFKA" class="com.github.danielwegener.logback.kafka.KafkaAppender">
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
+                <!-- Adds a timestamp to each log entry -->
                 <timestamp>
-                    <timeZone>UTC</timeZone>
+                    <fieldName>timestamp</fieldName>
+                    <pattern>yyyy-MM-dd'T'HH:mm:ss.SSSZ</pattern>
                 </timestamp>
-                <pattern>${APP_NAME} - %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+                <!-- Adds log level (e.g. INFO, DEBUG, etc.) -->
+                <logLevel>
+                    <fieldName>debug</fieldName>
+                </logLevel>
+                <!-- Adds the logger name -->
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+                <!-- Adds the thread name -->
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+                <!-- Adds the message of the logging event -->
+                <message>
+                    <fieldName>message</fieldName>
+                </message>
+                <!-- Adds the MDC (Mapped Diagnostic Context) if used -->
+                <mdc>
+                    <fieldName>mdc</fieldName>
+                </mdc>
+                <!-- Adds exception details if an exception was logged -->
+                <stackTrace>
+                    <fieldName>exception</fieldName>
+                </stackTrace>
             </providers>
         </encoder>
         <topic>logs</topic>
@@ -21,8 +49,6 @@
     </appender>
     <root level="info">
         <appender-ref ref="CONSOLE"/>
-    </root>
-    <root level="debug">
         <appender-ref ref="KAFKA"/>
     </root>
 </configuration>

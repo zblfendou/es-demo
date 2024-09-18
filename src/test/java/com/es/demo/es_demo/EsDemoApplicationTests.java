@@ -1,18 +1,23 @@
 package com.es.demo.es_demo;
 
 import cn.hutool.json.JSONUtil;
+import com.es.demo.es_demo.document.LogEntry;
 import com.es.demo.es_demo.document.Person;
+import com.es.demo.es_demo.service.LogEntryService;
 import com.es.demo.es_demo.service.PersonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,10 +28,30 @@ import static org.junit.Assert.*;
 @SpringBootTest(classes = EsDemoApplication.class)
 class EsDemoApplicationTests {
 
+    private static final Logger log = LoggerFactory.getLogger(EsDemoApplicationTests.class);
     @Autowired
     private PersonService service;
     @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private LogEntryService logService;
+
+
+    @Test
+    public void deleteLogEntry() {
+        logService.delAll();
+    }
+    @Test
+    public void saveLogEntry() {
+        List<LogEntry> logEntries = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            LogEntry logEntry = new LogEntry();
+            logEntry.setMessage("test_message_" + i);
+            logEntry.setTimestamp(LocalDateTime.now());
+            logEntries.add(logEntry);
+        }
+        logService.saveLogs(logEntries);
+    }
 
     @BeforeEach
     public void setUp() throws IOException {
